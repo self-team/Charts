@@ -26,28 +26,24 @@ open class MarkerView: NSUIView, IMarker
     open func offsetForDrawing(atPoint point: CGPoint) -> CGPoint
     {
         guard let chart = chartView else { return self.offset }
-        
-        var offset = self.offset
-        
+                
         let width = self.bounds.size.width
         let height = self.bounds.size.height
+        let chartHeight = chart.bounds.height
+        let chartWidth = chart.bounds.width
+
+        var offset = CGPoint(x: -width / 2, y: 0)
         
-        if point.x + offset.x < 0.0
-        {
-            offset.x = -point.x
-        }
-        else if point.x + width + offset.x > chart.bounds.size.width
-        {
-            offset.x = chart.bounds.size.width - point.x - width
+        if point.y < chartHeight / 2 {
+            offset.y = 16
+        } else {
+            offset.y = -height - 16
         }
         
-        if point.y + offset.y < 0
-        {
-            offset.y = -point.y
-        }
-        else if point.y + height + offset.y > chart.bounds.size.height
-        {
-            offset.y = chart.bounds.size.height - point.y - height
+        if point.x + offset.x < 16 {
+            offset.x = -point.x + 16
+        } else if chartWidth - point.x < -offset.x + 16 {
+            offset.x = -(width - (chartWidth - point.x)) - 16
         }
         
         return offset

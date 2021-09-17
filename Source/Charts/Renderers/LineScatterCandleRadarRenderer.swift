@@ -32,9 +32,13 @@ open class LineScatterCandleRadarRenderer: BarLineScatterCandleBubbleRenderer
         if set.isVerticalHighlightIndicatorEnabled
         {
             context.beginPath()
-            context.move(to: CGPoint(x: point.x, y: viewPortHandler.contentTop))
-            context.addLine(to: CGPoint(x: point.x, y: viewPortHandler.contentBottom))
+            context.move(to: CGPoint(x: point.x, y: viewPortHandler.contentBottom))
+            context.addLine(to: CGPoint(x: point.x, y: point.y))
             context.strokePath()
+            context.setFillColor(NSUIColor.white.cgColor)
+            context.fillEllipse(in: CGRect(x: point.x - 6, y: point.y - 6, width: 12, height: 12))
+            context.setFillColor(NSUIColor.mainBlueActiveColor.cgColor)
+            context.fillEllipse(in: CGRect(x: point.x - 4, y: point.y - 4, width: 8, height: 8))
         }
         
         // draw horizontal highlight lines
