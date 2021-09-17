@@ -701,8 +701,11 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
         case .began:
             if !(_isDragging || _isScaling) {
                 _isHold = true
-                let generator = UIImpactFeedbackGenerator(style: .light)
-                generator.impactOccurred()
+                if #available(iOS 10.0, *) {
+                    let generator = UIImpactFeedbackGenerator(style: .light)
+                    generator.impactOccurred()
+                }
+                
                 let h = getHighlightByTouchPoint(recognizer.location(in: self))
                 let lastHighlighted = self.lastHighlighted
                 if h != lastHighlighted {
