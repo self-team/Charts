@@ -37,7 +37,7 @@ open class LineScatterCandleRadarRenderer: BarLineScatterCandleBubbleRenderer
             context.strokePath()
             context.setFillColor(NSUIColor.white.cgColor)
             context.fillEllipse(in: CGRect(x: point.x - 6, y: point.y - 6, width: 12, height: 12))
-            context.setFillColor(NSUIColor(rgb: 0x2B61DF).cgColor)
+            context.setFillColor(NSUIColor(red: 43/255, green: 97/255, blue: 223/255, alpha: 1).cgColor)
             context.fillEllipse(in: CGRect(x: point.x - 4, y: point.y - 4, width: 8, height: 8))
         }
         
