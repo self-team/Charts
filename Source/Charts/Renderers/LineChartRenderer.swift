@@ -316,6 +316,13 @@ open class LineChartRenderer: LineRadarRenderer
             }
 
         var entries = [ChartDataEntry]()
+        
+        if entryCount == 1 {
+            if let e = dataSet.entryForIndex(0) {
+                entries.append(e)
+            }
+        }
+        
         for j in _xBounds.dropLast()
         {
             var e: ChartDataEntry! = dataSet.entryForIndex(j)
