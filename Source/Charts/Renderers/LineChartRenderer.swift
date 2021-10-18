@@ -336,6 +336,8 @@ open class LineChartRenderer: LineRadarRenderer
                 
                 if e == nil { break }
                 
+                entries.append(e)
+                
                 if isDrawSteppedEnabled
                 {
                     _lineSegments[1] = CGPoint(x: CGFloat(e.x), y: _lineSegments[0].y)
