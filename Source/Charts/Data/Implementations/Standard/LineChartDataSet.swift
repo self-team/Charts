@@ -175,7 +175,7 @@ open class LineChartDataSet: LineRadarChartDataSet, ILineChartDataSet
         return copy
     }
     
-    open var drawVerticalLineForEachPoint: Bool = false
+    open var drawVerticalLineForEachPoint: Bool = true
     open var verticalLineColor: NSUIColor = .black
     open var verticalLineDashLengths: [CGFloat]?
     open var verticalLineWidth: CGFloat = 1
