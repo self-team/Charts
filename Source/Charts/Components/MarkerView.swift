@@ -32,13 +32,7 @@ open class MarkerView: NSUIView, IMarker
         let chartHeight = chart.bounds.height
         let chartWidth = chart.bounds.width
 
-        var offset = CGPoint(x: -width / 2, y: 0)
-        
-        if point.y < chartHeight / 2 {
-            offset.y = 16
-        } else {
-            offset.y = -height - 16
-        }
+        var offset = CGPoint(x: -width / 2, y: 16)
         
         if point.x + offset.x < 16 {
             offset.x = -point.x + 16
