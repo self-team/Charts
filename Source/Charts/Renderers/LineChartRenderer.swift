@@ -315,11 +315,14 @@ open class LineChartRenderer: LineRadarRenderer
                 _lineSegments = [CGPoint](repeating: CGPoint(), count: pointsPerEntryPair)
             }
 
+        var entries = [ChartDataEntry]()
         for j in _xBounds.dropLast()
         {
             var e: ChartDataEntry! = dataSet.entryForIndex(j)
             
             if e == nil { continue }
+            
+            entries.append(e)
             
             _lineSegments[0].x = CGFloat(e.x)
             _lineSegments[0].y = CGFloat(e.y * phaseY)
@@ -378,7 +381,24 @@ open class LineChartRenderer: LineRadarRenderer
             context.strokeLineSegments(between: _lineSegments)
         }
         
+        if dataSet.drawVerticalLineForEachPoint {
+            for entry in entries {
+                let trans = dataProvider.getTransformer(forAxis: dataSet.axisDependency)
+                let point = trans.pixelForValues(x: entry.x, y: entry.y * phaseY)
+                context.setLineWidth(dataSet.verticalLineWidth)
+                context.setStrokeColor(dataSet.verticalLineColor.cgColor)
+                context.setLineDash(phase: dataSet.highlightLineDashPhase, lengths: dataSet.verticalLineDashLengths ?? [0])
+                context.beginPath()
+                context.move(to: CGPoint(x: point.x, y: viewPortHandler.contentBottom))
+                context.addLine(to: CGPoint(x: point.x, y: point.y))
+                context.strokePath()
+            }
+        }
         context.restoreGState()
+    }
+    
+    private func drawVerticalLine(at point: CGPoint, context: CGContext) {
+        
     }
     
     open func drawLinearFill(context: CGContext, dataSet: ILineChartDataSet, trans: Transformer, bounds: XBounds)

@@ -52,6 +52,15 @@ public protocol ILineChartDataSet: ILineRadarChartDataSet
     /// If true, drawing circles is enabled
     var drawCirclesEnabled: Bool { get set }
     
+    /// if true, drawing vertical line from the point to the bottom of chart is enabled
+    var drawVerticalLineForEachPoint: Bool { get set }
+    
+    var verticalLineColor: NSUIColor { get set }
+    
+    var verticalLineDashLengths: [CGFloat]? { get set }
+    
+    var verticalLineWidth: CGFloat { get set }
+    
     /// `true` if drawing circles for this DataSet is enabled, `false` ifnot
     var isDrawCirclesEnabled: Bool { get }
     

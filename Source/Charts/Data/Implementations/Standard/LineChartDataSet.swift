@@ -166,8 +166,17 @@ open class LineChartDataSet: LineRadarChartDataSet, ILineChartDataSet
         copy.lineCapType = lineCapType
         copy.drawCirclesEnabled = drawCirclesEnabled
         copy.drawCircleHoleEnabled = drawCircleHoleEnabled
+        copy.drawVerticalLineForEachPoint = drawVerticalLineForEachPoint
+        copy.verticalLineColor = verticalLineColor
+        copy.verticalLineDashLengths = verticalLineDashLengths
+        copy.verticalLineWidth = verticalLineWidth
         copy.mode = mode
         copy._fillFormatter = _fillFormatter
         return copy
     }
+    
+    open var drawVerticalLineForEachPoint: Bool = false
+    open var verticalLineColor: NSUIColor = .black
+    open var verticalLineDashLengths: [CGFloat]?
+    open var verticalLineWidth: CGFloat = 1
 }
