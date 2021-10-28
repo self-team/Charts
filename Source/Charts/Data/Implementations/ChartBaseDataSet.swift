@@ -365,6 +365,9 @@ open class ChartBaseDataSet: NSObject, IChartDataSet, NSCopying
     {
         return drawValuesEnabled
     }
+    
+    /// Works only for BarChart
+    open var drawOnlyHighestValue = false
 
     /// Set this to true to draw y-icons on the chart.
     ///

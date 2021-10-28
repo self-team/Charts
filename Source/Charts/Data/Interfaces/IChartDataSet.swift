@@ -247,6 +247,9 @@ public protocol IChartDataSet
     /// `true` if y-value drawing is enabled, `false` ifnot
     var isDrawValuesEnabled: Bool { get }
     
+    /// Works for barChart only
+    var drawOnlyHighestValue: Bool { get set }
+    
     /// Set this to true to draw y-icons on the chart
     ///
     /// - Note: For bar and line charts: if `maxVisibleCount` is reached, no icons will be drawn even if this is enabled.

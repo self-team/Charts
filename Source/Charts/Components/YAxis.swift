@@ -67,6 +67,23 @@ open class YAxis: AxisBase
     /// I.e. [2, 3] will paint [--   --   ]
     /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
     @objc open var zeroLineDashLengths: [CGFloat]?
+    
+    /// flag that indicates if the max value should be drawn regardless of other grid lines
+    @objc open var drawMaxValueLineEnabled = false
+    
+    /// Color of the max value line
+    @objc open var maxValueLineColor: NSUIColor? = NSUIColor.gray
+    
+    /// Width of the max value line
+    @objc open var maxValueLineWidth: CGFloat = 1.0
+    
+    /// This is how much (in pixels) into the dash pattern are we starting from.
+    @objc open var maxValueLineDashPhase = CGFloat(0.0)
+    
+    /// This is the actual dash pattern.
+    /// I.e. [2, 3] will paint [--   --   ]
+    /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
+    @objc open var maxValueLineDashLengths: [CGFloat]?
 
     /// axis space from the largest value to the top in percent of the total axis range
     @objc open var spaceTop = CGFloat(0.1)

@@ -43,7 +43,7 @@ class BarChartViewController: DemoBaseViewController {
         chartView.delegate = self
         
         chartView.drawBarShadowEnabled = false
-        chartView.drawValueAboveBarEnabled = false
+        chartView.drawValueAboveBarEnabled = true
         
         chartView.maxVisibleCount = 60
         
@@ -66,6 +66,7 @@ class BarChartViewController: DemoBaseViewController {
         leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: leftAxisFormatter)
         leftAxis.labelPosition = .outsideChart
         leftAxis.spaceTop = 0.15
+        leftAxis.drawMaxValueLineEnabled = true
         leftAxis.axisMinimum = 0 // FIXME: HUH?? this replaces startAtZero = YES
         
         let rightAxis = chartView.rightAxis
@@ -133,10 +134,12 @@ class BarChartViewController: DemoBaseViewController {
             set1 = BarChartDataSet(entries: yVals, label: "The year 2017")
             set1.colors = ChartColorTemplates.material()
             set1.drawValuesEnabled = false
+            set1.drawOnlyHighestValue = true
             
             let data = BarChartData(dataSet: set1)
             data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
             data.barWidth = 0.9
+            data.setDrawValues(true)
             chartView.data = data
         }
         

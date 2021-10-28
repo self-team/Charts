@@ -504,6 +504,7 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                     shouldDrawValues(forDataSet: dataSet)
                     else { continue }
                 
+                let max = dataSet.yMax
                 let isInverted = dataProvider.isInverted(axis: dataSet.axisDependency)
                 
                 // calculate the correct offset depending on the draw position of the value
@@ -534,7 +535,6 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                     for j in 0 ..< Int(ceil(Double(dataSet.entryCount) * animator.phaseX))
                     {
                         guard let e = dataSet.entryForIndex(j) as? BarChartDataEntry else { continue }
-                        
                         let rect = buffer.rects[j]
                         
                         let x = rect.origin.x + rect.size.width / 2.0
@@ -551,8 +551,7 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                         }
                         
                         let val = e.y
-                        
-                        if dataSet.isDrawValuesEnabled
+                        if dataSet.isDrawValuesEnabled && dataSet.drawOnlyHighestValue && max == val
                         {
                             drawValue(
                                 context: context,
@@ -810,8 +809,8 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 prepareBarHighlight(x: e.x, y1: y1, y2: y2, barWidthHalf: barData.barWidth / 2.0, trans: trans, rect: &barRect)
                 
                 setHighlightDrawPos(highlight: high, barRect: barRect)
-                
-                context.fill(barRect)
+                context.stroke(barRect, width: 1)
+                //context.fill(barRect)
             }
         }
         

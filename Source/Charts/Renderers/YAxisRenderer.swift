@@ -201,6 +201,11 @@ open class YAxisRenderer: AxisRendererBase
             // draw zero line
             drawZeroLine(context: context)
         }
+
+        if yAxis.drawMaxValueLineEnabled {
+            let maximum = yAxis.entries.max() ?? 0
+            drawMaxValueLine(context: context, yValue: maximum)
+        }
     }
     
     @objc open var gridClippingRect: CGRect
@@ -242,6 +247,42 @@ open class YAxisRenderer: AxisRendererBase
         transformer.pointValuesToPixel(&positions)
         
         return positions
+    }
+    
+    /// Draws the zero line at the specified position.
+    @objc open func drawMaxValueLine(context: CGContext, yValue: Double)
+    {
+        guard
+            let yAxis = self.axis as? YAxis,
+            let transformer = self.transformer,
+            let zeroLineColor = yAxis.maxValueLineColor
+            else { return }
+        
+        context.saveGState()
+        defer { context.restoreGState() }
+        
+        var clippingRect = viewPortHandler.contentRect
+        clippingRect.origin.y -= yAxis.maxValueLineWidth / 2.0
+        clippingRect.size.height += yAxis.zeroLineWidth
+        context.clip(to: clippingRect)
+
+        context.setStrokeColor(zeroLineColor.cgColor)
+        context.setLineWidth(yAxis.zeroLineWidth)
+        
+        let pos = transformer.pixelForValues(x: 0.0, y: yValue)
+    
+        if yAxis.maxValueLineDashLengths != nil
+        {
+            context.setLineDash(phase: yAxis.maxValueLineDashPhase, lengths: yAxis.maxValueLineDashLengths!)
+        }
+        else
+        {
+            context.setLineDash(phase: 0.0, lengths: [])
+        }
+        
+        context.move(to: CGPoint(x: viewPortHandler.contentLeft, y: pos.y))
+        context.addLine(to: CGPoint(x: viewPortHandler.contentRight, y: pos.y))
+        context.drawPath(using: CGPathDrawingMode.stroke)
     }
 
     /// Draws the zero line at the specified position.
