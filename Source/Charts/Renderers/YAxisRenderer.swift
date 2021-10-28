@@ -203,8 +203,7 @@ open class YAxisRenderer: AxisRendererBase
         }
 
         if yAxis.drawMaxValueLineEnabled {
-            let maximum = yAxis.entries.max() ?? 0
-            drawMaxValueLine(context: context, yValue: maximum)
+            drawMaxValueLine(context: context, yValue: maxYValue)
         }
     }
     

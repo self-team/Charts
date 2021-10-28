@@ -38,6 +38,10 @@ open class BarChartView: BarLineChartViewBase, BarChartDataProvider
         guard let data = self.data as? BarChartData
             else { return }
         
+        // remember yMax value for line
+        leftYAxisRenderer.maxYValue = data.yMax
+        rightYAxisRenderer.maxYValue = data.yMax
+        
         if fitBars
         {
             _xAxis.calculate(

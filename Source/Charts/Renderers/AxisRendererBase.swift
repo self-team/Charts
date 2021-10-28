@@ -18,6 +18,9 @@ open class AxisRendererBase: Renderer
     /// base axis this axis renderer works with
     @objc open var axis: AxisBase?
     
+    /// max value for y axis
+    @objc open var maxYValue: Double = 0
+    
     /// transformer to transform values to screen pixels and return
     @objc open var transformer: Transformer?
 

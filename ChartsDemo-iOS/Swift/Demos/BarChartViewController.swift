@@ -66,7 +66,7 @@ class BarChartViewController: DemoBaseViewController {
         leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: leftAxisFormatter)
         leftAxis.labelPosition = .outsideChart
         leftAxis.spaceTop = 0.15
-        leftAxis.drawMaxValueLineEnabled = true
+        //leftAxis.drawMaxValueLineEnabled = true
         leftAxis.axisMinimum = 0 // FIXME: HUH?? this replaces startAtZero = YES
         
         let rightAxis = chartView.rightAxis
@@ -76,6 +76,7 @@ class BarChartViewController: DemoBaseViewController {
         rightAxis.valueFormatter = leftAxis.valueFormatter
         rightAxis.spaceTop = 0.15
         rightAxis.axisMinimum = 0
+        rightAxis.drawMaxValueLineEnabled = true
         
         let l = chartView.legend
         l.horizontalAlignment = .left
@@ -140,6 +141,7 @@ class BarChartViewController: DemoBaseViewController {
             data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
             data.barWidth = 0.9
             data.setDrawValues(true)
+            //chartView.rightAxis.axisMaximum = set1.yMax
             chartView.data = data
         }
         

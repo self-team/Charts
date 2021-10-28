@@ -809,7 +809,7 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 prepareBarHighlight(x: e.x, y1: y1, y2: y2, barWidthHalf: barData.barWidth / 2.0, trans: trans, rect: &barRect)
                 
                 setHighlightDrawPos(highlight: high, barRect: barRect)
-                context.stroke(barRect, width: 1)
+                context.stroke(barRect, width: 2)
                 //context.fill(barRect)
             }
         }
