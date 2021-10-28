@@ -48,11 +48,12 @@ class BarChartViewController: DemoBaseViewController {
         chartView.maxVisibleCount = 60
         
         let xAxis = chartView.xAxis
-        xAxis.labelPosition = .bottom
+        xAxis.labelPosition = .bottomInside
         xAxis.labelFont = .systemFont(ofSize: 10)
         xAxis.granularity = 1
         xAxis.labelCount = 7
         xAxis.valueFormatter = DayAxisValueFormatter(chart: chartView)
+        xAxis.centerAxisLabelsEnabled = true
         
         let leftAxisFormatter = NumberFormatter()
         leftAxisFormatter.minimumFractionDigits = 0

@@ -110,7 +110,7 @@ open class XAxisRenderer: AxisRendererBase
         }
         else if xAxis.labelPosition == .bottomInside
         {
-            drawLabels(context: context, pos: viewPortHandler.contentBottom - yOffset - xAxis.labelRotatedHeight, anchor: CGPoint(x: 0.5, y: 0.0))
+            drawLabels(context: context, pos: viewPortHandler.contentBottom - yOffset * 2 + xAxis.labelRotatedHeight, anchor: CGPoint(x: 0.5, y: 0.0))
         }
         else
         { // BOTH SIDED
