@@ -482,9 +482,6 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
 
     open override func drawValues(context: CGContext)
     {
-        // if values are drawn
-        if isDrawingValuesAllowed(dataProvider: dataProvider)
-        {
             guard
                 let dataProvider = dataProvider,
                 let barData = dataProvider.barData
@@ -503,6 +500,11 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                     dataSet = dataSets[dataSetIndex] as? IBarChartDataSet,
                     shouldDrawValues(forDataSet: dataSet)
                     else { continue }
+                
+                // if values are drawn
+                if !isDrawingValuesAllowed(dataProvider: dataProvider) && !dataSet.drawOnlyHighestValue {
+                    return
+                }
                 
                 let max = dataSet.yMax
                 let isInverted = dataProvider.isInverted(axis: dataSet.axisDependency)
@@ -736,7 +738,6 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                     }
                 }
             }
-        }
     }
     
     /// Draws a value at the specified x and y position.
