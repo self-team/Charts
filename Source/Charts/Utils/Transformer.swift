@@ -122,7 +122,11 @@ open class Transformer: NSObject
     /// transforms multiple rects with all matrices
     open func rectValuesToPixel(_ rects: inout [CGRect])
     {
-        let trans = valueToPixelMatrix
+        var trans = valueToPixelMatrix
+        let y = _viewPortHandler.chartHeight * 0.875
+        if trans.ty != y {
+            trans.ty = y
+        }
         rects = rects.map { $0.applying(trans) }
     }
     
