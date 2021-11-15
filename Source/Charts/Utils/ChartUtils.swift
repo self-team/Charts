@@ -186,10 +186,10 @@ open class ChartUtils
             point.x -= textWidth
         }
         
-        if point.x + textWidth > screenWidth - 20 {
-            point.x = screenWidth - textWidth - 20
-        } else if point.x < 20 {
-            point.x = 20
+        if point.x + textWidth > screenWidth - textWidth / 2.0 {
+            point.x = screenWidth - textWidth - textWidth / 2.0
+        } else if point.x < textWidth / 2.0 {
+            point.x = textWidth / 2.0
         }
         
         NSUIGraphicsPushContext(context)
