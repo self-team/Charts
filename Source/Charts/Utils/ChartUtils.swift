@@ -186,9 +186,9 @@ open class ChartUtils
             point.x -= textWidth
         }
         
-        if point.x + textWidth > screenWidth - textWidth / 2.0 {
+        if point.x + textWidth > screenWidth - 32 {
             point.x = screenWidth - textWidth - textWidth / 2.0
-        } else if point.x < textWidth / 2.0 {
+        } else if point.x < 32 {
             point.x = textWidth / 2.0
         }
         
