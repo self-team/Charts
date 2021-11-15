@@ -174,14 +174,19 @@ open class ChartUtils
     open class func drawText(context: CGContext, text: String, point: CGPoint, align: NSTextAlignment, attributes: [NSAttributedString.Key : Any]?)
     {
         var point = point
+        let textWidth = text.size(withAttributes: attributes).width
         
         if align == .center
         {
-            point.x -= text.size(withAttributes: attributes).width / 2.0
+            point.x -= textWidth / 2.0
         }
         else if align == .right
         {
-            point.x -= text.size(withAttributes: attributes).width
+            point.x -= textWidth
+        }
+        
+        if point.x + textWidth > UIScreen.main.bounds.width {
+            point.x = UIScreen.main.bounds.width - textWidth
         }
         
         NSUIGraphicsPushContext(context)
