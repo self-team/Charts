@@ -175,6 +175,7 @@ open class ChartUtils
     {
         var point = point
         let textWidth = text.size(withAttributes: attributes).width
+        let screenWidth = UIScreen.main.bounds.width
         
         if align == .center
         {
@@ -185,8 +186,8 @@ open class ChartUtils
             point.x -= textWidth
         }
         
-        if point.x + textWidth > UIScreen.main.bounds.width {
-            point.x = UIScreen.main.bounds.width - textWidth
+        if point.x + textWidth > screenWidth - 16 {
+            point.x = screenWidth - textWidth - 16
         }
         
         NSUIGraphicsPushContext(context)
