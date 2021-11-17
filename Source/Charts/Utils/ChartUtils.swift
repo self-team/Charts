@@ -171,7 +171,7 @@ open class ChartUtils
         NSUIGraphicsPopContext()
     }
     
-    open class func drawText(context: CGContext, text: String, point: CGPoint, align: NSTextAlignment, attributes: [NSAttributedString.Key : Any]?)
+    open class func drawTextWithOffset(context: CGContext, text: String, point: CGPoint, align: NSTextAlignment, attributes: [NSAttributedString.Key : Any]?)
     {
         var point = point
         let textWidth = text.size(withAttributes: attributes).width
@@ -190,6 +190,28 @@ open class ChartUtils
             point.x = screenWidth - textWidth - 32
         } else if point.x < 32 {
             point.x = textWidth / 32
+        }
+        
+        NSUIGraphicsPushContext(context)
+        
+        (text as NSString).draw(at: point, withAttributes: attributes)
+        
+        NSUIGraphicsPopContext()
+    }
+    
+    open class func drawText(context: CGContext, text: String, point: CGPoint, align: NSTextAlignment, attributes: [NSAttributedString.Key : Any]?)
+    {
+        var point = point
+        let textWidth = text.size(withAttributes: attributes).width
+        let screenWidth = UIScreen.main.bounds.width
+        
+        if align == .center
+        {
+            point.x -= textWidth / 2.0
+        }
+        else if align == .right
+        {
+            point.x -= textWidth
         }
         
         NSUIGraphicsPushContext(context)

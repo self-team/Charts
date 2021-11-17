@@ -555,7 +555,7 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                         let val = e.y
                         if dataSet.isDrawValuesEnabled && dataSet.drawOnlyHighestValue && max == val
                         {
-                            drawValue(
+                            drawHighestValue(
                                 context: context,
                                 value: formatter.stringForValue(
                                     val,
@@ -744,6 +744,11 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
     @objc open func drawValue(context: CGContext, value: String, xPos: CGFloat, yPos: CGFloat, font: NSUIFont, align: NSTextAlignment, color: NSUIColor)
     {
         ChartUtils.drawText(context: context, text: value, point: CGPoint(x: xPos, y: yPos), align: align, attributes: [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: color])
+    }
+    
+    @objc open func drawHighestValue(context: CGContext, value: String, xPos: CGFloat, yPos: CGFloat, font: NSUIFont, align: NSTextAlignment, color: NSUIColor)
+    {
+        ChartUtils.drawTextWithOffset(context: context, text: value, point: CGPoint(x: xPos, y: yPos), align: align, attributes: [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: color])
     }
     
     open override func drawExtras(context: CGContext)
