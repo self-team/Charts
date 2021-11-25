@@ -36,4 +36,8 @@ public protocol IMarker: class
     
     /// Draws the IMarker on the given position on the given context
     func draw(context: CGContext, point: CGPoint)
+    
+    var isPiePopup: Bool { get set }
+    var hasTail: Bool { get set }
+    var height: CGFloat { get }
 }

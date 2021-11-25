@@ -15,6 +15,9 @@ import CoreGraphics
 @objc(ChartMarkerImage)
 open class MarkerImage: NSObject, IMarker
 {
+    public var isPiePopup: Bool = false
+    public var hasTail: Bool = false
+    public var height: CGFloat = 0
     /// The marker image to render
     @objc open var image: NSUIImage?
     

@@ -610,7 +610,7 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
                 continue
             }
             
-            if pos.y > marker.bounds.height + 10 {
+            if pos.y > marker.height + 10 {
                 marker.hasTail = true
             } else {
                 marker.hasTail = false

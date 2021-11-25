@@ -21,6 +21,9 @@ open class MarkerView: NSUIView, IMarker
 {
     public var isPiePopup: Bool = false
     public var hasTail: Bool = false
+    public var height: CGFloat {
+        bounds.height
+    }
     
     open var offset: CGPoint = CGPoint()
     
