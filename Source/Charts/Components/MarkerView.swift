@@ -19,6 +19,9 @@ import AppKit
 @objc(ChartMarkerView)
 open class MarkerView: NSUIView, IMarker
 {
+    public var isPiePopup: Bool = false
+    public var hasTail: Bool = false
+    
     open var offset: CGPoint = CGPoint()
     
     @objc open weak var chartView: ChartViewBase?
@@ -32,7 +35,17 @@ open class MarkerView: NSUIView, IMarker
         let chartHeight = chart.bounds.height
         let chartWidth = chart.bounds.width
 
-        var offset = CGPoint(x: -width / 2, y: 16 - point.y)
+        var offset: CGPoint!
+        if isPiePopup {
+            if point.y > height + 10 {
+                hasTail = true
+            } else {
+                hasTail = false
+            }
+            offset = CGPoint(x: -width / 2, y: 0)
+        } else {
+            offset = CGPoint(x: -width / 2, y: 16 - point.y)
+        }
         
         if point.x + offset.x < 16 {
             offset.x = -point.x + 16
