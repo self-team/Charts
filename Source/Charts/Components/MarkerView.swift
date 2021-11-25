@@ -37,12 +37,11 @@ open class MarkerView: NSUIView, IMarker
 
         var offset: CGPoint!
         if isPiePopup {
-            if point.y > height + 10 {
-                hasTail = true
+            if hasTail {
+                offset = CGPoint(x: -width / 2, y: 0)
             } else {
-                hasTail = false
+                offset = CGPoint(x: -width / 2, y: 16 - point.y)
             }
-            offset = CGPoint(x: -width / 2, y: 0)
         } else {
             offset = CGPoint(x: -width / 2, y: 16 - point.y)
         }

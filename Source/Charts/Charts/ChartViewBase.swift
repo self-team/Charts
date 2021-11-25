@@ -609,6 +609,12 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
             {
                 continue
             }
+            
+            if pos.y > marker.bounds.height + 10 {
+                marker.hasTail = true
+            } else {
+                marker.hasTail = false
+            }
 
             // callbacks to update the content
             marker.refreshContent(entry: e, highlight: highlight)
