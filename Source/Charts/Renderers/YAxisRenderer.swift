@@ -305,6 +305,9 @@ open class YAxisRenderer: AxisRendererBase
         context.setLineWidth(yAxis.zeroLineWidth)
         
         let pos = transformer.pixelForValues(x: 0.0, y: 0.0)
+        guard !pos.x.isNaN && !pos.y.isNaN else {
+            return
+        }
     
         if yAxis.zeroLineDashLengths != nil
         {
