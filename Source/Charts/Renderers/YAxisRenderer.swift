@@ -193,7 +193,11 @@ open class YAxisRenderer: AxisRendererBase
             }
             
             // draw the grid
-            positions.forEach { drawGridLine(context: context, position: $0) }
+            positions.forEach { point in
+                if !point.x.isNaN && !point.y.isNaN {
+                    drawGridLine(context: context, position: point)
+                }
+            }
         }
 
         if yAxis.drawZeroLineEnabled
@@ -220,6 +224,9 @@ open class YAxisRenderer: AxisRendererBase
         context: CGContext,
         position: CGPoint)
     {
+        if position.x.isNaN || position.y.isNaN {
+            return
+        }
         context.beginPath()
         context.move(to: CGPoint(x: viewPortHandler.contentLeft, y: position.y))
         context.addLine(to: CGPoint(x: viewPortHandler.contentRight, y: position.y))
@@ -244,6 +251,9 @@ open class YAxisRenderer: AxisRendererBase
         }
 
         transformer.pointValuesToPixel(&positions)
+        positions.removeAll { point in
+            point.x.isNaN || point.y.isNaN
+        }
         
         return positions
     }
