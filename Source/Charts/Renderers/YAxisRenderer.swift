@@ -133,7 +133,8 @@ open class YAxisRenderer: AxisRendererBase
         textAlign: NSTextAlignment)
     {
         guard
-            let yAxis = self.axis as? YAxis
+            let yAxis = self.axis as? YAxis,
+            !positions.isEmpty
             else { return }
         
         let labelFont = yAxis.labelFont
