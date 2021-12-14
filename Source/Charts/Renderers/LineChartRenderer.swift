@@ -441,6 +441,10 @@ open class LineChartRenderer: LineRadarRenderer
         
         let filled = CGMutablePath()
         
+        if matrix.tx.isNaN || matrix.ty.isNaN {
+            return CGMutablePath()
+        }
+        
         e = dataSet.entryForIndex(bounds.min)
         if e != nil
         {
